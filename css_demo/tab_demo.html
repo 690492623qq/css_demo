@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+        #tab{width: 30%;height: 20px ;margin: auto}
+        #tab ul{list-style: none}
+        #tab ul li{float: left ;margin-right:16px}
+        #tab ul li a{border:1px solid #ccc; color:#888; background:#f7f7f7;border-bottom:none;text-decoration: none}
+
+        #tab ul li a:hover{background:#fff;}
+
+        /**
+        **对内容进行测试
+        **/
+        #tabContent{width: 30%;height: 100px ;margin-left:500px;border:1px solid ; }
+
+
+    </style>
+    <script type="text/javascript" src="../js/jquery1.9.js"></script>
+    <script>
+        function tab(a,b,c) {
+            for(i=1;i<=b;i++){
+                var id = "#"+a+"_mo_"+i ;
+                if(c==i){  // 判断选择模块
+                    //显示模块内容
+                    $(id).show();
+                    //document.getElementById(a+"_mo_"+i).style.display = "block" ;
+                }else{// 没有选择的模块
+                    $(id).hide();
+                    //document.getElementById(a+"_mo_"+i).style.display = "none"; // 隐藏没有选择的模块
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div >
+        <div id="tab">
+            <ul>
+                <li id="tab_to_1"><a href="" onmouseover="tab('tab',4,1)">开始测试</a></li>
+                <li id="tab_to_2"><a href="" onmouseover="tab('tab',4,2)">这是测试</a></li>
+                <li id="tab_to_3"><a href="" onmouseover="tab('tab',4,3)">测试完成</a></li>
+            </ul>
+        </div>
+
+        <div id="tabContent" >
+            <div id="tab_mo_1">
+                热门排行在这里哦1
+            </div>
+            <div id="tab_mo_2" style="display: none">
+                热门排行在这里哦2
+                <ul>
+                    <li>test1</li>
+                    <li>test2</li>
+                </ul>
+            </div>
+            <div id="tab_mo_3" style="display: none">
+                热门排行在这里哦3
+            </div>
+        </div>
+    </div>
+</body>
+</html>
