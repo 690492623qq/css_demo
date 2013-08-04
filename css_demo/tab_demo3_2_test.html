@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+        #links {height:40px;width: 442px ;margin:auto;background-color: #000000;}
+        #links ul{padding-left:0;margin-top:0;margin-bottom:0;list-style-type:none;width: 440px ;height: 40px}
+        #links ul li{padding-left:6px ;padding-right:6px;float:left;cursor:pointer;height: 40px;line-height: 40px;color: #ffffff;}
+        #links ul li.current{color:#000;background:#ccc;}
+
+        #content{height: 300px;width: 440px ;margin:auto;border: 1px solid ;margin-top: 0;overflow:scroll}
+    </style>
+
+    <script>
+        window.onload = function (){
+            var oLi = document.getElementById("links").getElementsByTagName("li");
+            var oUl = document.getElementById("content").getElementsByTagName("ul");
+            for(var i= 0 ;i<oLi.length;i++){
+                oLi[i].index = i;
+                oLi[i].onmouseover = function (){
+                    for(var n = 0; n < oLi.length; n++) oLi[n].className="";
+                    this.className = "current";
+                    for(var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+                    oUl[this.index].style.display = "block"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="links">
+    <ul>
+        <li>关于倡萌</li>
+        <li>广告合作</li>
+        <li>版权声明</a></li>
+        <li>联系倡萌</li>
+        <li>友情链接</li>
+    </ul>
+</div>
+<div id="content">
+    <ul style="display:block;">
+        <li>网页特效原理分析</li>
+        <li>响应用户操作</li>
+        <li>提示框效果</li>
+        <li>事件驱动</li>
+        <li>元素属性操作</li>
+        <li>动手编写第一个JS特效</li>
+        <li>引入函数</li>
+        <li>网页换肤效果</li>
+        <li>展开/收缩播放列表效果</li>
+    </ul>
+
+    <ul style="display:none;">
+        <li>网页特效原理分析2</li>
+        <li>响应用户操作2</li>
+        <li>提示框效果2</li>
+        <li>事件驱动2</li>
+        <li>元素属性操作2</li>
+        <li>动手编写第一个JS特效2</li>
+        <li>引入函数2</li>
+        <li>网页换肤效果2</li>
+        <li>展开/收缩播放列表效果2</li>
+    </ul>
+
+    <ul style="display:none;">
+        <li>网页特效原理分析3</li>
+        <li>响应用户操作3</li>
+        <li>提示框效果3</li>
+        <li>事件驱动3</li>
+        <li>元素属性操作3</li>
+        <li>动手编写第一个JS特效3</li>
+        <li>引入函数3</li>
+        <li>网页换肤效果3</li>
+        <li>展开/收缩播放列表效果3</li>
+    </ul>
+
+    <ul style="display:none;">
+        <li>网页特效原理分析4</li>
+        <li>响应用户操作4</li>
+        <li>提示框效果4</li>
+        <li>事件驱动4</li>
+        <li>元素属性操作4</li>
+        <li>动手编写第一个JS特效4</li>
+        <li>引入函数4</li>
+        <li>网页换肤效果4</li>
+        <li>展开/收缩播放列表效果4</li>
+    </ul>
+
+    <ul style="display:none;">
+        <li>网页特效原理分析5</li>
+        <li>响应用户操作5</li>
+        <li>提示框效果5</li>
+        <li>事件驱动5</li>
+        <li>元素属性操作5</li>
+        <li>动手编写第一个JS特效5</li>
+        <li>引入函数5</li>
+        <li>网页换肤效果5</li>
+        <li>展开/收缩播放列表效果5</li>
+    </ul>
+</div>
+</body>
+</html>
