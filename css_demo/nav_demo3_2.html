@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <!--   <link href="http://www.chinaz.com//images/style.css" type="text/css" rel="stylesheet" />-->
+    <style>
+
+        /*全局样式控制*/
+        * html {
+            margin: 0 10px 0 -10px; /* IE 6 and below */
+        }
+
+        html, body {
+            height: 100%;
+        }
+        * html .container {
+            height: 100%;
+        }
+
+        body, div, address, blockquote, iframe, ul, ol, dl, dt, dd,
+        h1, h2, h3, h4, h5, h6, p, pre, table, caption, th, td,
+        form, legend, fieldset, input, button, select, textarea {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 100%;
+            font-family: inherit;
+        }
+
+        body {
+            color: #333;
+            background: url(../css/body_bg.jpg) repeat-x #deebf3;
+            font: 12px/1.5 Tahoma, Helvetica, Arial, sans-serif;
+        }
+
+        .disable {
+            display: none;
+        }
+
+        a:link, a:visited {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 930px;
+            min-height: 100%;
+            margin: auto;
+            text-align: left;
+            background: #fff;
+        }
+
+
+        /*主菜单控制*/
+        .nav {
+            position: relative;
+            margin: 0 10px 10px;
+            background: url(../css/nav_bg.png) no-repeat 0 -36px;
+        }
+        .navinner {
+            background: url(../css/nav_bg.png) no-repeat 100% -72px;
+        }
+        .navlist {
+            height: 36px;
+            line-height: 36px;
+            overflow: hidden;
+            margin: 0 10px;
+            background: url(../css/nav_bg.png) repeat-x 0 0;
+        }
+        .nav li {
+            float: left;
+            display: inline;
+            margin: 0 0 0 -2px;
+            padding: 0 4px 0 6px;
+            background: url(../css/nav_bg.png) no-repeat 0 -108px;
+        }
+        .nav a {
+            display: block;
+            width: 102px;
+            text-align: center;
+            font-size: 120%;
+        }
+        .nav a:link, .nav a:visited {
+            color: #fff;
+        }
+        .nav a.current, .nav a:hover, .nav a:active {
+            color: #fff;
+            font-weight: bold;
+            background: url(../css/nav_bg.png) no-repeat 50% -144px;
+        }
+
+
+        /*子菜单 样式控制*/
+        .subnav {
+            position: absolute;
+            top: 41px;
+            left: 0;
+            float: left;
+            height: 27px;
+            line-height: 27px;
+            white-space: nowrap;
+            background: url(../css/nav_bg.png) no-repeat 0 -180px;
+        }
+
+        .subnav p {
+            padding: 0 10px;
+            background: url(../css/nav_bg.png) no-repeat 100% -234px;
+        }
+
+        .subnav p span {
+            display: block;
+            background: url(../css/nav_bg.png) repeat-x 0 -207px;
+        }
+        .subnav p.pointer {
+            position: absolute;
+            top: -4px;
+            left: 0;
+            height: 5px;
+            width: 11px;
+            padding: 0;
+            margin-left: 20px;
+            text-indent: -999em;
+            background: url(../css/nav_bg.png) repeat-x 0 -261px;
+        }*
+
+
+       .subnav, .subnav a:link, .subnav a:visited {
+            color: #235E99;
+        }
+
+        .subnav a {
+            display: inline;
+            padding: 0;
+            font-size: 100%;
+        }
+        .subnav a:hover, .subnav a:active {
+            color:  #235E99;
+        }
+        .subnav a:hover, .subnav a:active {
+            font-weight: normal;
+            background: none;
+            border-bottom: 2px solid;
+        }
+
+
+        /* #subnav1 .pointer,
+         #subnav2 .pointer,
+         #subnav3 .pointer,
+         #subnav4 .pointer { left: 30px; }
+         #subnav5 .pointer { left: auto; right: 290px; }
+         #subnav6 .pointer { left: auto; right: 180px; }
+         #subnav7 .pointer { left: auto; right: 70px; }*/
+
+        /*#subnav1, #subnav2, #subnav3, #subnav4 {
+            min-width: 110px;
+        }*/
+
+
+
+
+        /* 子菜单的 浮动控制 */
+        #subnav1 { left: 120px; }
+       /* #subnav2 { left: 230px; }
+        #subnav3 { left: 340px; }
+        #subnav4 { left: 450px; }
+        #subnav5, #subnav6, #subnav7 {
+            left: auto;
+            right: 0px;
+        }*/
+    </style>
+
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function showMenu (baseID, divID) {
+            baseID = $(baseID);
+            divID  = $(divID);
+
+            if (showMenu.timer)
+                clearTimeout(showMenu.timer);
+            hideCur();
+            divID.style.display = 'block';
+            showMenu.cur = divID;
+            if (! divID.isCreate) {
+                divID.isCreate = true;
+                divID.onmouseover = function () {
+                    if (showMenu.timer) clearTimeout(showMenu.timer);
+                    hideCur();
+                    divID.style.display = 'block';
+                };
+                function hide () {
+                    showMenu.timer = setTimeout(
+                            function () {
+                                divID.style.display = 'none';
+                            }, 1000);
+                }
+                divID.onmouseout = hide;
+                baseID.onmouseout = hide;
+            }
+            function hideCur () {
+                showMenu.cur && (showMenu.cur.style.display = 'none');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="navinner">
+            <ul class="navlist">
+                <li><a href="/">首页</a></li>
+                <li><a href="/News/Index.html" id="nav_1" onmouseover="showMenu('nav_1','subnav1')">新闻资讯</a>
+                    <div class="subnav disable" id="subnav1">
+                        <p class="pointer">.sfdsdf</p>
+                        <p>
+                            <span>
+                              <a href="/News/It/Index.html">业界动态</a> |
+                              <a href="/News/Invest/Index.html">收购融资</a> |
+                              <a href="/News/Portals/Index.html">门户动态</a> |
+                              <a href="/News/Search/Index.html">搜索引擎</a> |
+                              <a href="/News/Game/Index.html">网络游戏</a> |
+                              <a href="/News/Biz/Index.html">电子商务</a> |
+                              <a href="/News/Media/Index.html">广告传媒</a> |
+                              <a href="/News/Soft/Index.html">厂商开发</a>
+                            </span>
+                        </p>
+                    </div>
+                </li>
+                <li><a href="/Webmaster/Index.html" id="nav_2" >站长在线</a>
+
+                </li>
+                <li><a href="/Webbiz/Index.html" id="nav_3" >网站运营</a>
+
+                </li>
+                <li><a href="/Design/Index.html" id="nav_4" >设计在线</a>
+
+                </li>
+                <li><a href="/Program/Index.html" id="nav_5" >网络编程</a>
+
+                </li>
+                <li><a href="/Union/Index.html" id="nav_6" >联盟资讯</a>
+
+                </li>
+                <li><a href="/Server/Index.html" id="nav_7" >服务器</a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
